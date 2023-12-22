@@ -23,12 +23,15 @@ class ProductController extends Controller
             'description' =>'required',
             'image' =>'required|mimes:png,jpg,jpeg,gif|max:10000',
             ]);
-        $imageName = time().'.'.$request->image->extension();
-        $request->image->move(public_path('products'), $imageName);
+
 
         $product = new Product;
         $product->name = $request->name;
         $product->description = $request->description;
+
+        $product->image = $request->image;
+        $imageName = time().'.'.$request->image->extension();
+        $request->image->move(public_path('products'), $imageName);
 
         $product->save();
         return back();
