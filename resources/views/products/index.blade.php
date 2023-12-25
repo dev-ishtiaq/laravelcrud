@@ -22,10 +22,35 @@
             <a class="btn btn-dark mt-2" href="/create_product">New Product</a>
         </div>
         <h1>New Products</h1>
+
+        <table class="table table-dark table-striped mt-2">
+            <tr>
+                <th class="text-center">ID No.</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Image</th>
+                <th class="text-center">Action</th>
+            </tr>
+            @foreach($products as $product)
+            <tr>
+                <td class="text-center">{{$loop->index+1}}</td>
+                <td>{{$product->name}}</td>
+                <td>{{$product->description}}</td>
+                <td><img class="rounded-circle" src="products/{{$product->image}}" alt="" height="50" width="50"></td>
+                <td class="text-center">
+                    <a class="btn btn-primary" href="#">Update</a>
+                    <a class="btn btn-danger" href="#">Delete</a>
+                </td>
+                @endforeach
+
+
+
+
+
+            </tr>
+          </table>
       </div>
-      <table class="table table-dark table-striped">
-        ...
-      </table>
+
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </html>

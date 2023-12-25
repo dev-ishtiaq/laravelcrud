@@ -9,7 +9,8 @@ class ProductController extends Controller
 {
     public function index()
     {
-        return view('products.index');
+
+        return view('products.index',['products'=>Product::get()]);
     }
     public function create_product()
     {
@@ -29,9 +30,18 @@ class ProductController extends Controller
         $product->name = $request->name;
         $product->description = $request->description;
 
-        $product->image = $request->image;
+        // $image = $request->image;
+
+        // if($image)
+        // {
+        //     $imagename = time().'.'.$image->getClientOriginalExtension();
+        //     $request->image->move('products', $imagename);
+        //     $product->image = $imagename;
+        //     }
+
         $imageName = time().'.'.$request->image->extension();
-        $request->image->move(public_path('products'), $imageName);
+        $request->image->move('products', $imageName);
+        $product->image = $imageName;
 
         $product->save();
         return back()->with('message','Product created!');
