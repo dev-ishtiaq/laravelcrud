@@ -34,7 +34,7 @@ class ProductController extends Controller
         $request->image->move(public_path('products'), $imageName);
 
         $product->save();
-        return back()->withSuccess('Produvt created!');
+        return back()->with('message','Product created!');
     }
 
 }

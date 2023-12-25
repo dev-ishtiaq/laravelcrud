@@ -15,9 +15,11 @@
             </li>
         </ul>
       </nav>
-      @if($message = Session::get('success'))
-      <div class="close alert alert-success alert-dismissible alert-block fade show" aria-hidden="true">X{{$message}}</div>
-
+      @if(session()->has('message'))
+      <div class="alert alert-info">
+          <button type="button" class="close" data-dismiss="alert" area-hidden="true">X</button>
+      {{ session()->get('message') }}
+      </div>
       @endif
       <div class="container">
         <div class="row justify-content-center">
