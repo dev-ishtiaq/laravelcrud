@@ -16,17 +16,19 @@
         </ul>
       </nav>
       @if(session()->has('message'))
-      <div class="alert alert-info">
-          <button type="button" class="close" data-dismiss="alert" area-hidden="true">X</button>
-      {{ session()->get('message') }}
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <span>Welcome! <strong>{{session()->get('message')}}</strong></span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
       @endif
       <div class="container">
         <div class="row justify-content-center">
             <div class="col-sm-8">
                 <div class="card mt-3 p-3">
-                    <form action="/products_store" method="POST" enctype="multipart/form-data">
+                    <h1 class="text-center text-muted">Product Edit #{{$product->name}}</h1>
+                    <form action="/products/{{$product->id}}/update" method="POST" enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')
                         <div class="form-group mb-3">
                             <label>Name</label>
                             <input type="text" name="name" class="form-control" value="{{old('name', $product->name)}}">

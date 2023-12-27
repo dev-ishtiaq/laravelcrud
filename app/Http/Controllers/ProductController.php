@@ -51,5 +51,36 @@ class ProductController extends Controller
         $product = Product::where('id',$id)->first();
         return view('products.edit', ['product' => $product]);
     }
+    public function products_update(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required',
+            'description' =>'required',
+            'image' =>'nullable|mimes:png,jpg,jpeg,gif|max:10000',
+            ]);
+            $product = Product::where('id', $id)->first();
+            if(isset($request->image))
+            {
+                $imageName = time().'.'.$request->image->extension();
+                $request->image->move('products', $imageName);
+                $product->image = $imageName;
+            }
+        $product->name = $request->name;
+        $product->description = $request->description;
+
+        // $image = $request->image;
+
+        // if($image)
+        // {
+        //     $imagename = time().'.'.$image->getClientOriginalExtension();
+        //     $request->image->move('products', $imagename);
+        //     $product->image = $imagename;
+        //     }
+
+
+
+        $product->save();
+        return back()->with('message','Product updated!');
+    }
 
 }
