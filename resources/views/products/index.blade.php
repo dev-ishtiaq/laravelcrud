@@ -23,7 +23,7 @@
         </div>
         <h1>New Products</h1>
 
-        <table class="table table-dark table-striped mt-2">
+        <table class="table table-light table-striped mt-2">
             <tr>
                 <th class="text-center">ID No.</th>
                 <th>Name</th>
@@ -38,8 +38,8 @@
                 <td>{{$product->description}}</td>
                 <td><img class="rounded-circle" src="products/{{$product->image}}" alt="" height="50" width="50"></td>
                 <td class="text-center">
-                    <a class="btn btn-primary" href="#">Update</a>
-                    <a class="btn btn-danger" href="#">Delete</a>
+                    <a class="btn btn-dark btn-sm" href="{{$product->id}}/edit">Edit</a>
+                    <a class="btn btn-danger btn-sm" href="#">Delete</a>
                 </td>
                 @endforeach
 
