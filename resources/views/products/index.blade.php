@@ -38,8 +38,8 @@
                 <td>{{$product->description}}</td>
                 <td><img class="rounded-circle" src="products/{{$product->image}}" alt="" height="50" width="50"></td>
                 <td class="text-center">
-                    <a class="btn btn-dark btn-sm" href="{{$product->id}}/edit">Edit</a>
-                    <a class="btn btn-danger btn-sm" href="#">Delete</a>
+                    <a class="btn btn-dark btn-sm" href="products/{{$product->id}}/edit">Edit</a>
+                    <a class="btn btn-danger btn-sm" href="products/{{$product->id}}/delete">Delete</a>
                 </td>
                 @endforeach
 

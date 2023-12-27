@@ -46,5 +46,10 @@ class ProductController extends Controller
         $product->save();
         return back()->with('message','Product created!');
     }
+    public function products_edit($id)
+    {
+        $product = Product::where('id',$id)->first();
+        return view('products.edit', ['product' => $product]);
+    }
 
 }
