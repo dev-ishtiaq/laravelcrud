@@ -10,7 +10,9 @@ class ProductController extends Controller
     public function index()
     {
 
-        return view('products.index',['products'=>Product::get()]);
+        return view('products.index',[
+            'products'=>Product::latest()->paginate(5)
+        ]);
     }
     public function create_product()
     {
@@ -81,6 +83,18 @@ class ProductController extends Controller
 
         $product->save();
         return back()->with('message','Product updated!');
+    }
+    public function products_delete($id)
+    {
+        $product = Product::where('id', $id)->first();
+        $product->delete();
+        return back()->with('message','Product deleted!');
+    }
+    public function products_show($id)
+    {
+        $product = Product::where('id', $id)->first();
+
+        return view('products.show', ['product'=>$product]);
     }
 
 }
